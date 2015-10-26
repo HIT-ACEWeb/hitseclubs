@@ -19,10 +19,11 @@ Scrum迭代 + RUP迭代混合，包括文档
 	5. ......
 
 ####3. 产品原型设计 + 需求
-1. 前端用"时间轴"的样式来展示，每一个"时间点"就是一个数据对象，每一个对象是 ***一张图片*** + ***一段文字***。 也可以把一个"时间轴"称为"一很多展板的集合"，一个"时间点"称为"一块展板"。**先做一张图，几张图后面再做**。
+1. 前端用"时间轴"的样式来展示，每一个"时间点"就是一个数据对象，每一个对象是 ***多张图片*** + ***一段文字***。 也可以把一个"时间轴"称为"一很多展板的集合"，一个"时间点"称为"一块展板"。
 2. 如果不懂，我画一下吧。
 3. 各俱乐部主席团成员可以编辑各俱乐部页面，前端提供编辑按钮，只对本俱乐部主席团显示。用户可以编辑自己的页面。
 4. 一个学生可以进多个俱乐部，一个俱乐部有多名学生。
+5. 用户resume，俱乐部introduction，给个不得少于多少字（如200），不得多于多少字（如2000）。
 
 ####3. 架构
 
@@ -75,12 +76,13 @@ UI                  MySQL
 id|int(11)|Y|管理员ID
 name|varchar(100)|---|管理员用户名
 password|varchar(100)|---|管理员密码
-uptime|timestamp|---|更新时间
 
 
 #####2. users
 
 成员 + 主席团， 主席团可以管理（增删）成员)（真大，先这么办，做完后再去学优化方法
+
+
 
 字段|类型|主键|作用
 ---|---|---|----
@@ -88,16 +90,15 @@ id|int(11)|Y|用户ID
 nickname|varchar(100)|---|用户昵称
 ismanagement|int(100)|---|是否为主席团成员
 name|varchar(100)|---|用户真实姓名
+email|varchar(100)|---|用户邮箱
 schoolnumber|varchar(100)|---|用户学号
 password|varchar(100)|---|用户密码
 sign|varchar(100)|---|用户签名（座右铭）
-resume|varchar(100000?)|---|用户简历
+resume|varchar(100000)|---|用户简历
 face|varchar(100)存储方式需要考虑|---|用户头像
 schoolstart|int(11)|---|用户入学年份
 usergraduate|(int(11))|---|用户毕业年份
 userdegreee|varchar(100)|---|用户最终学历
-boardnumber|int(11)|---|用户展板数（冗余字段）
-uptime|timestamp|---|更新时间
 
 #####3. clubs(各俱乐部)
 字段|类型|主键|作用
@@ -105,9 +106,8 @@ uptime|timestamp|---|更新时间
 id|int(11)|Y|俱乐部ID
 clubname|varchar(100)|---|俱乐部名称
 membernum|int(11)|---|俱乐部成员数
-introduction|varchar(10000?)|---|俱乐部简介
+introduction|varchar(10000)|---|俱乐部简介
 boardnumber|int(11)|---|俱乐部展板数（冗余字段）
-uptime|timestamp|---|更新时间
 
 #####4. club_users
 
@@ -117,7 +117,6 @@ uptime|timestamp|---|更新时间
 ---|---|---|---
 clubid|int(11)|---|俱乐部ID
 userid|int(11)|---|用户ID
-uptime|timestamp|---|更新时间
 
 #####5. boards
 
@@ -129,28 +128,22 @@ uptime|timestamp|---|更新时间
 ----|---|---|---
 id|int(11)|Y|展板ID 
 photos|varchar(100)|---|展板图片地址
-text|varchar(1000?)|---|展板文字
-uptime|timestamp|---|更新时间
+text|varchar(1000)|---|展板文字
 
 #####6. club_boards(俱乐部，展板关系表)
 字段|类型|主键|作用
 ---|---|---|---
 clubid|int(11)|---|俱乐部ID
 boardid|int(11)|---|展板ID
-uptime|timestamp|---|更新时间
 
 #####7. user_boards(用户，展板关系表)
 字段|类型|主键|作用
 ---|---|---|---
 userid|int(11)|---|用户ID
 boardid|int(11)|---|展板ID
-uptime|timestamp|---|更新时间
 
 ####6. 问题
 1. 在OS X上建立数据库，部署到Linux或Window服务器，会出问题吗？
-2. 一块展板多张图
-3. 6，7合到一起？
-
 
 
 
