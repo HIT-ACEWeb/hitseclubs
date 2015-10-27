@@ -96,9 +96,9 @@ password|varchar(100)|---|用户密码
 sign|varchar(100)|---|用户签名（座右铭）
 resume|varchar(100000)|---|用户简历
 face|varchar(100)存储方式需要考虑|---|用户头像
-schoolstart|int(11)|---|用户入学年份
-usergraduate|(int(11))|---|用户毕业年份
-userdegreee|varchar(100)|---|用户最终学历
+schoolstart|varchar(100)|---|用户入学年份
+graduate|varchar(100)|---|用户毕业年份
+degree|varchar(100)|---|用户最终学历
 
 #####3. clubs(各俱乐部)
 字段|类型|主键|作用
